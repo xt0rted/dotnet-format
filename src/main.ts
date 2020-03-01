@@ -2,7 +2,7 @@ import { getInput, setFailed } from "@actions/core";
 
 import { format } from "./dotnet";
 
-export async function run() {
+export async function run(): Promise<void> {
   try {
     const lintAllFiles = getInput("lint-all-files") === "true";
     const failFast = getInput("fail-fast") === "true";

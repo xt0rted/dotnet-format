@@ -6,9 +6,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "eslint": "eslint . --ext .js,.ts",
     "package": "ncc build src/main.ts",
     "release": "npm run package && git add -f dist/",
-    "test": "tsc --noEmit"
+    "test": "tsc --noEmit && npm run eslint"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,10 @@
   },
   "devDependencies": {
     "@types/node": "^13.7.7",
+    "@typescript-eslint/eslint-plugin": "^2.21.0",
+    "@typescript-eslint/parser": "^2.21.0",
     "@zeit/ncc": "^0.21.1",
+    "eslint": "^6.8.0",
     "typescript": "^3.8.3"
   }
 }

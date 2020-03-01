@@ -30,7 +30,7 @@ enum fileStatus {
    * The file was renamed.
    */
   renamed = "renamed",
-};
+}
 
 const fileTypes = [
   ".cs",
