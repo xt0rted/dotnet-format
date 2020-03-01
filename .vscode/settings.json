@@ -1,0 +1,6 @@
+{
+    "cSpell.words": [
+        "Octokit"
+    ],
+    "typescript.tsdk": "node_modules\\typescript\\lib"
+}

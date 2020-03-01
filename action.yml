@@ -1,0 +1,30 @@
+name: "dotnet-format"
+
+description: "Run dotnet format and optionally apply any fixes"
+
+author: "xt0rted"
+
+branding:
+  icon: "command"
+  color: "green"
+
+inputs:
+  action:
+    description: "The primary action dotnet-format should perform (report errors or apply fixes)"
+    required: true
+
+  repo-token:
+    description: "The GITHUB_TOKEN secret"
+    required: true
+
+  lint-all-files:
+    description: "If all files should be linted, or just those in the current pull request"
+    required: false
+
+  fail-fast:
+    description: "If the job should fail if there's a linting error"
+    required: false
+
+runs:
+  using: "node12"
+  main: "dist/index.js"

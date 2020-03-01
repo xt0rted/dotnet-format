@@ -1,0 +1,33 @@
+{
+  "name": "dotnet-format",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Run `dotnet format` and optionally apply any fixes",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "package": "ncc build src/main.ts",
+    "release": "npm run package && git add -f dist/",
+    "test": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xt0rted/dotnet-format.git"
+  },
+  "keywords": [
+    "actions"
+  ],
+  "author": "xt0rted",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.2",
+    "@actions/exec": "^1.0.3",
+    "@actions/github": "^2.1.1",
+    "@actions/io": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.7",
+    "@zeit/ncc": "^0.21.1",
+    "typescript": "^3.8.3"
+  }
+}
