@@ -4,7 +4,7 @@ import { format } from "./dotnet";
 
 export async function run(): Promise<void> {
   try {
-    const lintAllFiles = getInput("lint-all-files") === "true";
+    const lintChangedFiles = getInput("lint-changed-files") === "true";
     const failFast = getInput("fail-fast") === "true";
 
     const action = getInput("action", { required: true });
@@ -15,14 +15,14 @@ export async function run(): Promise<void> {
       case "lint":
         dotnetResult = await format({
           dryRun: true,
-          lintAllFiles: lintAllFiles,
+          changedFiles: lintChangedFiles,
         });
         break;
 
       case "fix":
         dotnetResult = await format({
           dryRun: false,
-          lintAllFiles: lintAllFiles,
+          changedFiles: lintChangedFiles,
         });
         break;
 

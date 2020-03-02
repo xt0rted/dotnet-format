@@ -1,5 +1,6 @@
-import { debug, info } from "@actions/core";
+import { debug, info, warning } from "@actions/core";
 import { exec } from "@actions/exec";
+import { context } from "@actions/github";
 import { which } from "@actions/io";
 
 import { getPullRequestFiles } from "./files";
@@ -8,7 +9,21 @@ import type { ExecOptions } from "@actions/exec/lib/interfaces";
 
 export interface FormatOptions {
   dryRun: boolean;
-  lintAllFiles: boolean;
+  changedFiles: boolean;
+}
+
+function lintChangedFiles(lintChangedFiles: boolean): boolean {
+  if (lintChangedFiles) {
+    if (context.eventName === "issue_comment" || context.eventName === "pull_request") {
+      return true;
+    }
+
+    warning("Linting changed files is only available on the issue_comment and pull_request events");
+
+    return false;
+  }
+
+  return false;
 }
 
 export async function format(options: FormatOptions): Promise<number> {
@@ -22,7 +37,7 @@ export async function format(options: FormatOptions): Promise<number> {
     dotnetFormatOptions.push("--dry-run");
   }
 
-  if (!options.lintAllFiles) {
+  if (lintChangedFiles(options.changedFiles)) {
     const filesToLint = await getPullRequestFiles();
 
     info(`Linting ${filesToLint.length} files`);
