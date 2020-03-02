@@ -9,16 +9,16 @@ import type { ExecOptions } from "@actions/exec/lib/interfaces";
 
 export interface FormatOptions {
   dryRun: boolean;
-  changedFiles: boolean;
+  onlyChangedFiles: boolean;
 }
 
-function lintChangedFiles(lintChangedFiles: boolean): boolean {
-  if (lintChangedFiles) {
+function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
+  if (onlyChangedFiles) {
     if (context.eventName === "issue_comment" || context.eventName === "pull_request") {
       return true;
     }
 
-    warning("Linting changed files is only available on the issue_comment and pull_request events");
+    warning("Formatting only changed files is available on the issue_comment and pull_request events only");
 
     return false;
   }
@@ -37,14 +37,14 @@ export async function format(options: FormatOptions): Promise<number> {
     dotnetFormatOptions.push("--dry-run");
   }
 
-  if (lintChangedFiles(options.changedFiles)) {
+  if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
     const filesToLint = await getPullRequestFiles();
 
     info(`Linting ${filesToLint.length} files`);
 
     // if there weren't any files to check then we need to bail
     if (!filesToLint.length) {
-      debug("No files found for linting");
+      debug("No files found for formatting");
       return 0;
     }
 

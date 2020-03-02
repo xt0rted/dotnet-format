@@ -4,7 +4,7 @@ import { format } from "./dotnet";
 
 export async function run(): Promise<void> {
   try {
-    const lintChangedFiles = getInput("lint-changed-files") === "true";
+    const onlyChangedFiles = getInput("only-changed-files") === "true";
     const failFast = getInput("fail-fast") === "true";
 
     const action = getInput("action", { required: true });
@@ -15,14 +15,14 @@ export async function run(): Promise<void> {
       case "lint":
         dotnetResult = await format({
           dryRun: true,
-          changedFiles: lintChangedFiles,
+          onlyChangedFiles: onlyChangedFiles,
         });
         break;
 
       case "fix":
         dotnetResult = await format({
           dryRun: false,
-          changedFiles: lintChangedFiles,
+          onlyChangedFiles: onlyChangedFiles,
         });
         break;
 
@@ -32,7 +32,7 @@ export async function run(): Promise<void> {
 
     // fail fast will cause the workflow to stop on this job
     if (dotnetResult && failFast) {
-      throw Error("Linting issues found");
+      throw Error("Formatting issues found");
     }
   } catch (error) {
     setFailed(error.message);

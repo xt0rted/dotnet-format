@@ -18,7 +18,7 @@ inputs:
     required: false
     default: "lint"
 
-  lint-changed-files:
+  only-changed-files:
     description: "If only changed files in the current pull request should be formatting"
     required: false
 

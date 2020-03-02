@@ -4,7 +4,31 @@ Run `dotnet-format` as part of your workflow to report linting errors or auto fi
 
 ## Usage
 
-Running on pull requests.
+Running on `push`.
+
+```yml
+name: Pull Request
+on: push
+jobs:
+  dotnet-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Add dotnet-format problem matcher
+        uses: xt0rted/dotnet-format-problem-matcher@v1
+
+      - name: Restore dotnet tools
+        uses: xt0rted/dotnet-tool-restore@v1
+
+      - name: Run dotnet format
+        uses: xt0rted/dotnet-format@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+Running on `pull_request`.
 
 ```yml
 name: Pull Request
@@ -26,7 +50,7 @@ jobs:
         uses: xt0rted/dotnet-format@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          lint-changed-files: "true"
+          only-changed-files: "true"
 ```
 
 Running on demand by pull request comment, triggered by the text `/dotnet format`.
@@ -71,7 +95,7 @@ jobs:
         uses: xt0rted/dotnet-format@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          lint-all-files: "false"
+          only-changed-files: "true"
 ```
 
 ## Options
@@ -87,7 +111,7 @@ Name | Allowed values | Description
 Name | Allowed values | Description
 -- | -- | --
 `action` | `fix`, `lint` (default) | The primary action dotnet-format should perform.
-`lint-changed-files` | `true`, `false` (default) | If all files should be formatting, or just those in the current pull request
+`only-changed-files` | `true`, `false` (default) | If all files should be formatting, or just those in the current pull request
 `fail-fast` | `true` (default), `false` | If the job should fail if there's a formatting error
 
 ## License
