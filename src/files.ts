@@ -41,9 +41,15 @@ export async function getPullRequestFiles(): Promise<string[]> {
   const token = getInput("repo-token", { required: true });
   const githubClient = new GitHub(token);
 
+  const pullNumber = (context.payload.issue || context.payload.pull_request || context.payload).number;
+
+  if (!pullNumber) {
+    throw Error("Unable to get pull request number from action event");
+  }
+
   const listFilesOptions = githubClient.pulls.listFiles.endpoint.merge({
     ...context.repo,
-    pull_number: context.payload["number"],
+    pull_number: pullNumber,
   });
 
   const files: Octokit.PullsListFilesResponse = await githubClient.paginate(listFilesOptions);
