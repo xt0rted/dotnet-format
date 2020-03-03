@@ -135,8 +135,8 @@ Name | Allowed values | Description
 Name | Allowed values | Description
 -- | -- | --
 `action` | `fix`, `lint` (default) | The primary action dotnet-format should perform.
-`only-changed-files` | `true`, `false` (default) | If all files should be formatting, or just those in the current pull request
-`fail-fast` | `true` (default), `false` | If the job should fail if there's a formatting error
+`only-changed-files` | `true`, `false` (default) | Only changed files in the current pull request should be formatted.
+`fail-fast` | `true` (default), `false` | The job should fail if there's a formatting error.
 
 ## License
 

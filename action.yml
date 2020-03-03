@@ -19,11 +19,11 @@ inputs:
     default: "lint"
 
   only-changed-files:
-    description: "If only changed files in the current pull request should be formatting"
+    description: "Only changed files in the current pull request should be formatted"
     required: false
 
   fail-fast:
-    description: "If the job should fail if there's a formatting error"
+    description: "The job should fail if there's a formatting error"
     required: false
     default: "true"
 
