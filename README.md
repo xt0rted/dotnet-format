@@ -1,5 +1,8 @@
 # GitHub Action for dotnet-format
 
+[![CI Workflow Status](https://github.com/xt0rted/dotnet-format/workflows/CI/badge.svg)](https://github.com/xt0rted/dotnet-format/actions?query=workflow%3ACI)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=xt0rted/dotnet-format)](https://dependabot.com)
+
 Run `dotnet-format` as part of your workflow to report linting errors or auto fix violations as part of your pull request workflow.
 
 ## Usage
