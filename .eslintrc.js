@@ -17,6 +17,7 @@ module.exports = {
     "array-bracket-spacing": "error",
     "comma-dangle": ["error", "always-multiline"],
     indent: ["error", 2],
+    "object-shorthand": "error",
     quotes: ["error", "double"],
     semi: "error",
   },
