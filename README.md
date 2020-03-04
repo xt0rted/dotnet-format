@@ -59,8 +59,8 @@ jobs:
 
 Running on demand by pull request comment, triggered by the text `/dotnet format`.
 
-> ℹ To push fixes back to the pull request branch you'll need to setup a [Personal Access Token](https://github.com/settings/tokens/new?scopes=repo&description=github%20actions) with the `repo` scope.
-> The provided `GITHUB_TOKEN` will not trigger additional workflows so you'll need to [setup a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) with your Personal Access Token.
+> ℹ The provided `GITHUB_TOKEN` will not trigger additional workflows.
+> To push fixes back to the pull request branch you'll need to [setup a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) with a [Personal Access Token](https://github.com/settings/tokens/new?scopes=repo&description=github%20actions) that has the `repo` scope.
 
 ```yml
 name: Format on Slash Command
