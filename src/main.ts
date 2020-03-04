@@ -1,6 +1,6 @@
 import { getInput, setFailed } from "@actions/core";
 
-import { format } from "./dotnet";
+import { fix, lint } from "./actions";
 
 export async function run(): Promise<void> {
   try {
@@ -9,30 +9,29 @@ export async function run(): Promise<void> {
 
     const action = getInput("action", { required: true });
 
-    let dotnetResult: number;
-
     switch (action) {
       case "lint":
-        dotnetResult = await format({
-          dryRun: true,
-          onlyChangedFiles: onlyChangedFiles,
+        await lint({
+          failFast,
+          formatOptions: {
+            dryRun: true,
+            onlyChangedFiles,
+          },
         });
         break;
 
       case "fix":
-        dotnetResult = await format({
-          dryRun: false,
-          onlyChangedFiles: onlyChangedFiles,
+        await fix({
+          failFast,
+          formatOptions: {
+            dryRun: false,
+            onlyChangedFiles,
+          },
         });
         break;
 
       default:
         throw Error(`Unsupported action "${action}"`);
-    }
-
-    // fail fast will cause the workflow to stop on this job
-    if (dotnetResult && failFast) {
-      throw Error("Formatting issues found");
     }
   } catch (error) {
     setFailed(error.message);
