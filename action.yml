@@ -6,7 +6,7 @@ author: "xt0rted"
 
 branding:
   icon: "command"
-  color: "green"
+  color: "purple"
 
 inputs:
   repo-token:
