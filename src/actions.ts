@@ -1,29 +1,31 @@
-import { setOutput } from "@actions/core";
+import { getInput, setOutput } from "@actions/core";
 
-import { format, FormatOptions } from "./dotnet";
+import { format } from "./dotnet";
 
-export interface CheckOptions {
-  failFast: boolean;
-  formatOptions: FormatOptions;
-}
+export async function check(): Promise<void> {
+  const onlyChangedFiles = getInput("only-changed-files") === "true";
+  const failFast = getInput("fail-fast") === "true";
 
-export interface FixOptions {
-  formatOptions: FormatOptions;
-}
-
-export async function check(options: CheckOptions): Promise<void> {
-  const result = await format(options.formatOptions);
+  const result = await format({
+    dryRun: true,
+    onlyChangedFiles,
+  });
 
   setOutput("has-changes", (!!result).toString());
 
   // fail fast will cause the workflow to stop on this job
-  if (result && options.failFast) {
+  if (result && failFast) {
     throw Error("Formatting issues found");
   }
 }
 
-export async function fix(options: FixOptions): Promise<void> {
-  const result = await format(options.formatOptions);
+export async function fix(): Promise<void> {
+  const onlyChangedFiles = getInput("only-changed-files") === "true";
+
+  const result = await format({
+    dryRun: false,
+    onlyChangedFiles,
+  });
 
   setOutput("has-changes", (!!result).toString());
 }

@@ -4,29 +4,15 @@ import { check, fix } from "./actions";
 
 export async function run(): Promise<void> {
   try {
-    const onlyChangedFiles = getInput("only-changed-files") === "true";
-    const failFast = getInput("fail-fast") === "true";
-
     const action = getInput("action", { required: true });
 
     switch (action) {
       case "check":
-        await check({
-          failFast,
-          formatOptions: {
-            dryRun: true,
-            onlyChangedFiles,
-          },
-        });
+        await check();
         break;
 
       case "fix":
-        await fix({
-          formatOptions: {
-            dryRun: false,
-            onlyChangedFiles,
-          },
-        });
+        await fix();
         break;
 
       default:
