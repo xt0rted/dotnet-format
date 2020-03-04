@@ -14,9 +14,9 @@ inputs:
     required: true
 
   action:
-    description: "The primary action dotnet-format should perform (report errors or apply fixes)"
+    description: "The primary action dotnet-format should perform (check for errors or apply fixes)"
     required: false
-    default: "lint"
+    default: "check"
 
   only-changed-files:
     description: "Only changed files in the current pull request should be formatted"

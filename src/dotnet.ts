@@ -38,17 +38,17 @@ export async function format(options: FormatOptions): Promise<number> {
   }
 
   if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
-    const filesToLint = await getPullRequestFiles();
+    const filesToCheck = await getPullRequestFiles();
 
-    info(`Linting ${filesToLint.length} files`);
+    info(`Checking ${filesToCheck.length} files`);
 
     // if there weren't any files to check then we need to bail
-    if (!filesToLint.length) {
+    if (!filesToCheck.length) {
       debug("No files found for formatting");
       return 0;
     }
 
-    dotnetFormatOptions.push("--files", filesToLint.join(","));
+    dotnetFormatOptions.push("--files", filesToCheck.join(","));
   }
 
   const dotnetPath: string = await which("dotnet", true);

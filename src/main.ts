@@ -1,6 +1,6 @@
 import { getInput, setFailed } from "@actions/core";
 
-import { fix, lint } from "./actions";
+import { check, fix } from "./actions";
 
 export async function run(): Promise<void> {
   try {
@@ -10,8 +10,8 @@ export async function run(): Promise<void> {
     const action = getInput("action", { required: true });
 
     switch (action) {
-      case "lint":
-        await lint({
+      case "check":
+        await check({
           failFast,
           formatOptions: {
             dryRun: true,
@@ -22,7 +22,6 @@ export async function run(): Promise<void> {
 
       case "fix":
         await fix({
-          failFast,
           formatOptions: {
             dryRun: false,
             onlyChangedFiles,

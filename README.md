@@ -3,7 +3,7 @@
 [![CI Workflow Status](https://github.com/xt0rted/dotnet-format/workflows/CI/badge.svg)](https://github.com/xt0rted/dotnet-format/actions?query=workflow%3ACI)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=xt0rted/dotnet-format)](https://dependabot.com)
 
-Run `dotnet-format` as part of your workflow to report linting errors or auto fix violations as part of your pull request workflow.
+Run `dotnet-format` as part of your workflow to report formatting errors or auto fix violations as part of your pull request workflow.
 
 ## Usage
 
@@ -134,9 +134,9 @@ Name | Allowed values | Description
 
 Name | Allowed values | Description
 -- | -- | --
-`action` | `fix`, `lint` (default) | The primary action dotnet-format should perform.
+`action` | `check` (default), `fix` | The primary action dotnet-format should perform.
 `only-changed-files` | `true`, `false` (default) | Only changed files in the current pull request should be formatted.
-`fail-fast` | `true` (default), `false` | The job should fail if there's a formatting error. Only used with the `lint` action.
+`fail-fast` | `true` (default), `false` | The job should fail if there's a formatting error. Only used with the `check` action.
 
 ## Outputs
 

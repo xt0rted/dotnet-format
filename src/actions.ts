@@ -1,14 +1,18 @@
 import { setOutput } from "@actions/core";
 
-import { format as dotnetFormat, FormatOptions } from "./dotnet";
+import { format, FormatOptions } from "./dotnet";
 
-export interface LintOptions {
+export interface CheckOptions {
   failFast: boolean;
   formatOptions: FormatOptions;
 }
 
-export async function lint(options: LintOptions): Promise<void> {
-  const result = await dotnetFormat(options.formatOptions);
+export interface FixOptions {
+  formatOptions: FormatOptions;
+}
+
+export async function check(options: CheckOptions): Promise<void> {
+  const result = await format(options.formatOptions);
 
   setOutput("has-changes", (!!result).toString());
 
@@ -18,13 +22,8 @@ export async function lint(options: LintOptions): Promise<void> {
   }
 }
 
-export interface FixOptions {
-  failFast: boolean;
-  formatOptions: FormatOptions;
-}
-
 export async function fix(options: FixOptions): Promise<void> {
-  const result = await dotnetFormat(options.formatOptions);
+  const result = await format(options.formatOptions);
 
   setOutput("has-changes", (!!result).toString());
 }
