@@ -31,10 +31,10 @@ export async function format(options: FormatOptions): Promise<number> {
     ignoreReturnCode: true,
   };
 
-  const dotnetFormatOptions = ["format"];
+  const dotnetFormatOptions = ["format", "--check"];
 
   if (options.dryRun) {
-    dotnetFormatOptions.push("--check", "--dry-run");
+    dotnetFormatOptions.push("--dry-run");
   }
 
   if (formatOnlyChangedFiles(options.onlyChangedFiles)) {

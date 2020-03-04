@@ -27,6 +27,10 @@ inputs:
     required: false
     default: "true"
 
+outputs:
+  has-changes:
+    description: "A value indicating if any files were formatted"
+
 runs:
   using: "node12"
   main: "dist/index.js"

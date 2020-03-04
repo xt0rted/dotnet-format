@@ -138,6 +138,12 @@ Name | Allowed values | Description
 `only-changed-files` | `true`, `false` (default) | Only changed files in the current pull request should be formatted.
 `fail-fast` | `true` (default), `false` | The job should fail if there's a formatting error. Only used with the `lint` action.
 
+## Outputs
+
+Name | Description
+-- | --
+`has-changes` | If any files were found to have violations or had fixes applied. Will be a string value of `true` or `false`.
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
