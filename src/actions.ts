@@ -11,7 +11,7 @@ export async function check(): Promise<void> {
     onlyChangedFiles,
   });
 
-  setOutput("has-changes", (!!result).toString());
+  setOutput("has-changes", result.toString());
 
   // fail fast will cause the workflow to stop on this job
   if (result && failFast) {
@@ -27,5 +27,5 @@ export async function fix(): Promise<void> {
     onlyChangedFiles,
   });
 
-  setOutput("has-changes", (!!result).toString());
+  setOutput("has-changes", result.toString());
 }

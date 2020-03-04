@@ -26,7 +26,7 @@ function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
   return false;
 }
 
-export async function format(options: FormatOptions): Promise<number> {
+export async function format(options: FormatOptions): Promise<boolean> {
   const execOptions: ExecOptions = {
     ignoreReturnCode: true,
   };
@@ -45,7 +45,7 @@ export async function format(options: FormatOptions): Promise<number> {
     // if there weren't any files to check then we need to bail
     if (!filesToCheck.length) {
       debug("No files found for formatting");
-      return 0;
+      return false;
     }
 
     dotnetFormatOptions.push("--files", filesToCheck.join(","));
@@ -54,5 +54,5 @@ export async function format(options: FormatOptions): Promise<number> {
   const dotnetPath: string = await which("dotnet", true);
   const dotnetResult = await exec(`"${dotnetPath}"`, dotnetFormatOptions, execOptions);
 
-  return dotnetResult;
+  return !!dotnetResult;
 }
