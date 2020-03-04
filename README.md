@@ -29,7 +29,6 @@ jobs:
         uses: xt0rted/dotnet-format@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          fail-fast: "true"
 ```
 
 Running on `pull_request`.
@@ -63,7 +62,7 @@ Running on demand by pull request comment, triggered by the text `/dotnet format
 > To push fixes back to the pull request branch you'll need to [setup a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) with a [Personal Access Token](https://github.com/settings/tokens/new?scopes=repo&description=github%20actions) that has the `repo` scope.
 
 ```yml
-name: Format on Slash Command
+name: Format on slash command
 on:
   issue_comment:
     types: created
@@ -80,7 +79,7 @@ jobs:
           command: dotnet
           reaction-type: "eyes"
 
-      - name: Get PR branch info
+      - name: Get branch info
         if: steps.command.outputs.command-name
         id: comment-branch
         uses: xt0rted/pull-request-comment-branch@v1
@@ -100,13 +99,15 @@ jobs:
 
       - name: Run dotnet format
         if: steps.command.outputs.command-name && steps.command.outputs.command-arguments == 'format'
+        id: format
         uses: xt0rted/dotnet-format@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          only-changed-files: "true"
+          action: "fix"
+          only-changed-files: true
 
       - name: Commit files
-        if: steps.command.outputs.command-name && steps.command.outputs.command-arguments == 'format'
+        if: steps.command.outputs.command-name && steps.command.outputs.command-arguments == 'format' && steps.format.outputs.has-changes == 'true'
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -115,7 +116,7 @@ jobs:
           Co-authored-by: ${{ github.event.comment.user.login }} <${{ github.event.comment.user.id }}+${{ github.event.comment.user.login }}@users.noreply.github.com>'
 
       - name: Push changes
-        if: steps.command.outputs.command-name && steps.command.outputs.command-arguments == 'format'
+        if: steps.command.outputs.command-name && steps.command.outputs.command-arguments == 'format' && steps.format.outputs.has-changes == 'true'
         uses: ad-m/github-push-action@v0.5.0
         with:
           branch: ${{ steps.comment-branch.outputs.ref }}
