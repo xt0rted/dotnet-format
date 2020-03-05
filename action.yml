@@ -5,7 +5,7 @@ description: "Run dotnet format and optionally apply any fixes"
 author: "xt0rted"
 
 branding:
-  icon: "command"
+  icon: "file-text"
   color: "purple"
 
 inputs:
