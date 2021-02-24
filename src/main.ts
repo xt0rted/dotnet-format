@@ -1,6 +1,12 @@
-import { getInput, setFailed } from "@actions/core";
+import {
+  getInput,
+  setFailed,
+} from "@actions/core";
 
-import { check, fix } from "./actions";
+import {
+  check,
+  fix,
+} from "./actions";
 
 export async function run(): Promise<void> {
   try {
@@ -19,9 +25,12 @@ export async function run(): Promise<void> {
         throw Error(`Unsupported action "${action}"`);
     }
   } catch (error) {
-    setFailed(error.message);
-    throw error;
+    if (error instanceof Error) {
+      setFailed(error.message);
+    } else {
+      throw error;
+    }
   }
 }
 
-run();
+void run();

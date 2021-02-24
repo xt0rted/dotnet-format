@@ -1,33 +1,36 @@
 import { extname } from "path";
 
 import { getInput } from "@actions/core";
-import { context, getOctokit } from "@actions/github";
+import {
+  context,
+  getOctokit,
+} from "@actions/github";
 
-enum fileStatus {
+enum FileStatus {
   /**
    * The file was added.
    */
-  added = "added",
+  Added = "added",
 
   /**
    * The mode of the file was changed or there are unknown changes because the diff was truncated.
    */
-  changed = "changed",
+  Changed = "changed",
 
   /**
    * The content of the file was modified.
    */
-  modified = "modified",
+  Modified = "modified",
 
   /**
    * The file was removed.
    */
-  removed = "removed",
+  Removed = "removed",
 
   /**
    * The file was renamed.
    */
-  renamed = "renamed",
+  Renamed = "renamed",
 }
 
 const fileTypes = [
@@ -49,7 +52,7 @@ export async function getPullRequestFiles(): Promise<string[]> {
   });
 
   return files
-    .filter(file => file.status !== fileStatus.removed)
-    .filter(file => fileTypes.includes(extname(file.filename)))
-    .map(file => file.filename);
+    .filter((file) => file.status !== FileStatus.Removed)
+    .filter((file) => fileTypes.includes(extname(file.filename)))
+    .map((file) => file.filename);
 }

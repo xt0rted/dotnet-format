@@ -1,4 +1,8 @@
-import { debug, info, warning } from "@actions/core";
+import {
+  debug,
+  info,
+  warning,
+} from "@actions/core";
 import { exec } from "@actions/exec";
 import { context } from "@actions/github";
 import { which } from "@actions/io";
@@ -27,9 +31,7 @@ function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
 }
 
 export async function format(options: FormatOptions): Promise<boolean> {
-  const execOptions: ExecOptions = {
-    ignoreReturnCode: true,
-  };
+  const execOptions: ExecOptions = { ignoreReturnCode: true };
 
   const dotnetFormatOptions = ["format", "--check"];
 
