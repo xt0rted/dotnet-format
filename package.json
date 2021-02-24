@@ -9,8 +9,8 @@
     "eslint": "eslint . --ext .js,.ts",
     "eslint:fix": "eslint . --fix --ext .js,.ts",
     "package": "ncc build src/main.ts",
-    "release": "npm run package && git add -f dist/",
-    "test": "tsc --noEmit && npm run eslint"
+    "release": "yarn package && git add -f dist/",
+    "test": "tsc --noEmit && yarn eslint"
   },
   "repository": {
     "type": "git",
