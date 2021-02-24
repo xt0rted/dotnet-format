@@ -1,9 +1,7 @@
 import { extname } from "path";
 
 import { getInput } from "@actions/core";
-import { context, GitHub } from "@actions/github";
-
-import type { Octokit } from "@octokit/rest";
+import { context, getOctokit } from "@actions/github";
 
 enum fileStatus {
   /**
@@ -39,7 +37,7 @@ const fileTypes = [
 
 export async function getPullRequestFiles(): Promise<string[]> {
   const token = getInput("repo-token", { required: true });
-  const githubClient = new GitHub(token);
+  const githubClient = getOctokit(token);
 
   const pullNumber = (context.payload.issue || context.payload.pull_request || context.payload).number;
 
@@ -47,12 +45,10 @@ export async function getPullRequestFiles(): Promise<string[]> {
     throw Error("Unable to get pull request number from action event");
   }
 
-  const listFilesOptions = githubClient.pulls.listFiles.endpoint.merge({
+  const files = await githubClient.paginate(githubClient.pulls.listFiles, {
     ...context.repo,
-    pull_number: pullNumber,
+    pull_number: context.issue.number,
   });
-
-  const files: Octokit.PullsListFilesResponse = await githubClient.paginate(listFilesOptions);
 
   return files
     .filter(file => file.status !== fileStatus.removed)
