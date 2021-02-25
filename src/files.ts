@@ -6,7 +6,7 @@ import {
   getOctokit,
 } from "@actions/github";
 
-enum FileStatus {
+const enum FileStatus {
   /**
    * The file was added.
    */
