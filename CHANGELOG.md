@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## Version 1.1.0
 
 - Bumped `@actions/core` from 1.2.3 to 1.2.6
 - Bumped `@actions/exec` from 1.0.3 to 1.0.4
