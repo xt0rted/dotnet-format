@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -12,19 +12,19 @@ jobs:
 
     strategy:
       matrix:
-        node: [12, 13]
+        node: [12, 14]
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2.0.0
+        uses: actions/checkout@v2.3.4
 
       - name: Install node
-        uses: actions/setup-node@v1.3.0
+        uses: actions/setup-node@v2.1.4
         with:
           node-version: ${{ matrix.node }}
 
-      - run: npm ci
+      - run: yarn install
 
-      - run: npm test
+      - run: yarn test
 
-      - run: npm run build
+      - run: yarn run build

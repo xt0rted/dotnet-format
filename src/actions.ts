@@ -1,4 +1,7 @@
-import { getInput, setOutput } from "@actions/core";
+import {
+  getInput,
+  setOutput,
+} from "@actions/core";
 
 import { format } from "./dotnet";
 

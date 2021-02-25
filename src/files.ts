@@ -1,35 +1,36 @@
 import { extname } from "path";
 
 import { getInput } from "@actions/core";
-import { context, GitHub } from "@actions/github";
+import {
+  context,
+  getOctokit,
+} from "@actions/github";
 
-import type { Octokit } from "@octokit/rest";
-
-enum fileStatus {
+const enum FileStatus {
   /**
    * The file was added.
    */
-  added = "added",
+  Added = "added",
 
   /**
    * The mode of the file was changed or there are unknown changes because the diff was truncated.
    */
-  changed = "changed",
+  Changed = "changed",
 
   /**
    * The content of the file was modified.
    */
-  modified = "modified",
+  Modified = "modified",
 
   /**
    * The file was removed.
    */
-  removed = "removed",
+  Removed = "removed",
 
   /**
    * The file was renamed.
    */
-  renamed = "renamed",
+  Renamed = "renamed",
 }
 
 const fileTypes = [
@@ -39,23 +40,19 @@ const fileTypes = [
 
 export async function getPullRequestFiles(): Promise<string[]> {
   const token = getInput("repo-token", { required: true });
-  const githubClient = new GitHub(token);
+  const githubClient = getOctokit(token);
 
-  const pullNumber = (context.payload.issue || context.payload.pull_request || context.payload).number;
-
-  if (!pullNumber) {
+  if (!context.issue.number) {
     throw Error("Unable to get pull request number from action event");
   }
 
-  const listFilesOptions = githubClient.pulls.listFiles.endpoint.merge({
+  const files = await githubClient.paginate(githubClient.pulls.listFiles, {
     ...context.repo,
-    pull_number: pullNumber,
+    pull_number: context.issue.number,
   });
 
-  const files: Octokit.PullsListFilesResponse = await githubClient.paginate(listFilesOptions);
-
   return files
-    .filter(file => file.status !== fileStatus.removed)
-    .filter(file => fileTypes.includes(extname(file.filename)))
-    .map(file => file.filename);
+    .filter((file) => file.status !== FileStatus.Removed)
+    .filter((file) => fileTypes.includes(extname(file.filename)))
+    .map((file) => file.filename);
 }

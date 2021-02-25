@@ -16,10 +16,47 @@ module.exports = {
   rules: {
     "array-bracket-spacing": "error",
     "comma-dangle": ["error", "always-multiline"],
+    eqeqeq: ["error", "smart"],
     indent: ["error", 2],
+    "object-curly-newline": ["error", {
+      ExportDeclaration: {
+        multiline: true,
+        minProperties: 2,
+      },
+      ImportDeclaration: {
+        multiline: true,
+        minProperties: 2,
+      },
+      ObjectExpression: {
+        multiline: true,
+        minProperties: 2,
+      },
+      ObjectPattern: { consistent: true },
+    }],
     "object-shorthand": "error",
     quotes: ["error", "double"],
+    "quote-props": ["error", "as-needed"],
     semi: "error",
+    // strings
+    "no-nonoctal-decimal-escape": "error",
+    // variables
+    "no-const-assign": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    // arrow functions
+    "arrow-body-style": ["error", "as-needed"],
+    "arrow-parens": ["error", "always"],
+    "arrow-spacing": ["error", {
+      before: true, after: true,
+    }],
+    "implicit-arrow-linebreak": ["error", "beside"],
+    "prefer-arrow-callback": "error",
+    // classes
+    "class-methods-use-this": "error",
+    "no-dupe-class-members": "error",
+    "no-useless-constructor": "error",
+    // modules
+    "no-duplicate-imports": ["error", { includeExports: true }],
   },
   overrides: [
     {
@@ -35,15 +72,43 @@ module.exports = {
         camelcase: "off",
         indent: "off",
         quotes: "off",
-        "@typescript-eslint/camelcase": ["error", {
-          properties: "always",
-          genericType: "always",
-          ignoreDestructuring: false,
-          allow: [
-            "pull_number",
-          ],
-        }],
         "@typescript-eslint/indent": ["error", 2],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          // eslint defaults
+          {
+            selector: "default",
+            format: ["camelCase"],
+          },
+          {
+            selector: "variable",
+            format: ["camelCase", "UPPER_CASE"],
+          },
+          {
+            selector: "parameter",
+            format: ["camelCase"],
+            leadingUnderscore: "allow",
+          },
+          {
+            selector: "memberLike",
+            modifiers: ["private"],
+            format: ["camelCase"],
+            leadingUnderscore: "require",
+          },
+          {
+            selector: "typeLike",
+            format: ["PascalCase"],
+          },
+          // project specific settings
+          {
+            selector: "enumMember",
+            format: ["StrictPascalCase"],
+          },
+          {
+            selector: "property",
+            format: null,
+          },
+        ],
         "@typescript-eslint/quotes": ["error", "double"],
       },
     },
