@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Bumped `@actions/io` from 1.0.2 to 1.1.0
+
 ## Version 1.1.0
 
 - Bumped `@actions/core` from 1.2.3 to 1.2.6
