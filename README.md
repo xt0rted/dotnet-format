@@ -161,12 +161,12 @@ Name | Allowed values | Description
 -- | -- | --
 `repo-token` | `GITHUB_TOKEN` (default) or PAT | `GITHUB_TOKEN` token or a repo scoped PAT.
 `version` | `3` (default) | Version of `dotnet-format` to use.
+`action` | `check` (default), `fix` | Primary action `dotnet-format` should perform.
 
 ### Optional
 
 Name | Allowed values | Description
 -- | -- | --
-`action` | `check` (default), `fix` | Primary action `dotnet-format` should perform.
 `only-changed-files` | `true`, `false` (default) | Only changed files in the current pull request should be formatted.
 `fail-fast` | `true` (default), `false` | The job should fail if there's a formatting error. Only used with the `check` action.
 

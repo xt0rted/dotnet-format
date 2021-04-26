@@ -21,7 +21,7 @@ inputs:
 
   action:
     description: "Primary action dotnet-format should perform (check for errors or apply fixes)"
-    required: false
+    required: true
     default: "check"
 
   only-changed-files:
