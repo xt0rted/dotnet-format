@@ -117,6 +117,42 @@ jobs:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 ```
 
+## Control Permissions
+
+If your repository is using [control permissions](https://github.blog/changelog/2021-04-20-github-actions-control-permissions-for-github_token/), and you want to check only changed files, you'll need to set `pull-request: read` on either the workflow or the job.
+
+### Workflow Config
+
+```yml
+on: pull_request
+permissions:
+  pull-requests: read
+jobs:
+  dotnet-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run dotnet format
+        uses: xt0rted/dotnet-format@v1
+        with:
+          only-changed-files: "true"
+```
+
+### Job Config
+
+```yml
+on: pull_request
+jobs:
+  dotnet-format:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    steps:
+      - name: Run dotnet format
+        uses: xt0rted/dotnet-format@v1
+        with:
+          only-changed-files: "true"
+```
+
 ## Options
 
 ### Required
