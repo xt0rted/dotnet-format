@@ -2,7 +2,7 @@
 
 [![CI Workflow Status](https://github.com/xt0rted/dotnet-format/workflows/CI/badge.svg)](https://github.com/xt0rted/dotnet-format/actions?query=workflow%3ACI)
 
-Run [dotnet-format](https://github.com/dotnet/format) as part of your workflow to report formatting errors or auto fix violations as part of your pull request workflow.
+Run [dotnet-format](https://github.com/dotnet/format) v3 as part of your workflow to report formatting errors or auto fix violations as part of your pull request workflow.
 
 ## Usage
 
