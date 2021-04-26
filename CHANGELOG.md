@@ -6,6 +6,7 @@
 - Bumped `@actions/io` from 1.0.2 to 1.1.0
 - Updated the `repo-token` input to be optional and defaulted it to `GITHUB_TOKEN`. If you're already using this value, or not using the `only-changed-files` option, you can remove this setting from your workflow.
 - Updated the output target from `es6` to `es2019`
+- Added a new `version` input to allow picking the cli version of `dotnet-format` to use. Currently this defaults to `3` and is the only version supported. A future update will add support for versions 4 and 5.
 
 ## Version 1.1.0
 
