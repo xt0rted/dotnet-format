@@ -64,7 +64,7 @@ async function formatVersion3(options: FormatOptions): Promise<boolean> {
 }
 
 export function format(version: DotNetFormatVersion): FormatFunction {
-  switch (version) {
+  switch (version || "") {
     case "3":
       return formatVersion3;
 
