@@ -160,6 +160,7 @@ jobs:
 Name | Allowed values | Description
 -- | -- | --
 `repo-token` | `GITHUB_TOKEN` (default) or PAT | `GITHUB_TOKEN` token or a repo scoped PAT.
+`version` | `3` (default) | Version of `dotnet-format` to use.
 
 ### Optional
 
