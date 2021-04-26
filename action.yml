@@ -10,11 +10,12 @@ branding:
 
 inputs:
   repo-token:
-    description: "The GITHUB_TOKEN secret"
+    description: "GITHUB_TOKEN token or a repo scoped PAT"
     required: true
+    default: ${{ github.token }}
 
   action:
-    description: "The primary action dotnet-format should perform (check for errors or apply fixes)"
+    description: "Primary action dotnet-format should perform (check for errors or apply fixes)"
     required: false
     default: "check"
 

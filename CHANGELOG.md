@@ -4,6 +4,7 @@
 
 - Bumped `@actions/core` from 1.2.6 to 1.2.7
 - Bumped `@actions/io` from 1.0.2 to 1.1.0
+- Updated the `repo-token` input to be optional and defaulted it to `GITHUB_TOKEN`.
 
 ## Version 1.1.0
 

@@ -26,8 +26,6 @@ jobs:
 
       - name: Run dotnet format
         uses: xt0rted/dotnet-format@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 Running on `pull_request`.
@@ -51,7 +49,6 @@ jobs:
       - name: Run dotnet format
         uses: xt0rted/dotnet-format@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
           only-changed-files: "true"
 ```
 
@@ -74,7 +71,6 @@ jobs:
         uses: xt0rted/slash-command-action@v1
         continue-on-error: true
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
           command: dotnet
           reaction-type: "eyes"
 
@@ -101,7 +97,6 @@ jobs:
         id: format
         uses: xt0rted/dotnet-format@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
           action: "fix"
           only-changed-files: true
 
@@ -128,13 +123,13 @@ jobs:
 
 Name | Allowed values | Description
 -- | -- | --
-`repo-token` | `GITHUB_TOKEN` or a custom value | The token used to call the GitHub api.
+`repo-token` | `GITHUB_TOKEN` (default) or PAT | `GITHUB_TOKEN` token or a repo scoped PAT.
 
 ### Optional
 
 Name | Allowed values | Description
 -- | -- | --
-`action` | `check` (default), `fix` | The primary action dotnet-format should perform.
+`action` | `check` (default), `fix` | Primary action `dotnet-format` should perform.
 `only-changed-files` | `true`, `false` (default) | Only changed files in the current pull request should be formatted.
 `fail-fast` | `true` (default), `false` | The job should fail if there's a formatting error. Only used with the `check` action.
 
