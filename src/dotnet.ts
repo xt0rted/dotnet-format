@@ -11,6 +11,10 @@ import { getPullRequestFiles } from "./files";
 
 import type { ExecOptions } from "@actions/exec/lib/interfaces";
 
+import type { DotNetFormatVersion } from "./version";
+
+export type FormatFunction = (options: FormatOptions) => Promise<boolean>;
+
 export interface FormatOptions {
   dryRun: boolean;
   onlyChangedFiles: boolean;
@@ -30,7 +34,7 @@ function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
   return false;
 }
 
-export async function format(options: FormatOptions): Promise<boolean> {
+async function formatVersion3(options: FormatOptions): Promise<boolean> {
   const execOptions: ExecOptions = { ignoreReturnCode: true };
 
   const dotnetFormatOptions = ["format", "--check"];
@@ -57,4 +61,14 @@ export async function format(options: FormatOptions): Promise<boolean> {
   const dotnetResult = await exec(`"${dotnetPath}"`, dotnetFormatOptions, execOptions);
 
   return !!dotnetResult;
+}
+
+export function format(version: DotNetFormatVersion): FormatFunction {
+  switch (version || "") {
+    case "3":
+      return formatVersion3;
+
+    default:
+      throw Error(`dotnet-format version "${version}" is unsupported`);
+  }
 }

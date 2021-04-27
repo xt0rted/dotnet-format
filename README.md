@@ -2,7 +2,7 @@
 
 [![CI Workflow Status](https://github.com/xt0rted/dotnet-format/workflows/CI/badge.svg)](https://github.com/xt0rted/dotnet-format/actions?query=workflow%3ACI)
 
-Run [dotnet-format](https://github.com/dotnet/format) as part of your workflow to report formatting errors or auto fix violations as part of your pull request workflow.
+Run [dotnet-format](https://github.com/dotnet/format) v3 as part of your workflow to report formatting errors or auto fix violations as part of your pull request workflow.
 
 ## Usage
 
@@ -26,8 +26,6 @@ jobs:
 
       - name: Run dotnet format
         uses: xt0rted/dotnet-format@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 Running on `pull_request`.
@@ -51,7 +49,6 @@ jobs:
       - name: Run dotnet format
         uses: xt0rted/dotnet-format@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
           only-changed-files: "true"
 ```
 
@@ -74,7 +71,6 @@ jobs:
         uses: xt0rted/slash-command-action@v1
         continue-on-error: true
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
           command: dotnet
           reaction-type: "eyes"
 
@@ -101,7 +97,6 @@ jobs:
         id: format
         uses: xt0rted/dotnet-format@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
           action: "fix"
           only-changed-files: true
 
@@ -122,19 +117,56 @@ jobs:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 ```
 
+## Control Permissions
+
+If your repository is using [control permissions](https://github.blog/changelog/2021-04-20-github-actions-control-permissions-for-github_token/), and you want to check only changed files, you'll need to set `pull-request: read` on either the workflow or the job.
+
+### Workflow Config
+
+```yml
+on: pull_request
+permissions:
+  pull-requests: read
+jobs:
+  dotnet-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run dotnet format
+        uses: xt0rted/dotnet-format@v1
+        with:
+          only-changed-files: "true"
+```
+
+### Job Config
+
+```yml
+on: pull_request
+jobs:
+  dotnet-format:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    steps:
+      - name: Run dotnet format
+        uses: xt0rted/dotnet-format@v1
+        with:
+          only-changed-files: "true"
+```
+
 ## Options
 
 ### Required
 
 Name | Allowed values | Description
 -- | -- | --
-`repo-token` | `GITHUB_TOKEN` or a custom value | The token used to call the GitHub api.
+`repo-token` | `GITHUB_TOKEN` (default) or PAT | `GITHUB_TOKEN` token or a repo scoped PAT.
+`version` | `3` (default) | Version of `dotnet-format` to use.
+`action` | `check` (default), `fix` | Primary action `dotnet-format` should perform.
 
 ### Optional
 
 Name | Allowed values | Description
 -- | -- | --
-`action` | `check` (default), `fix` | The primary action dotnet-format should perform.
 `only-changed-files` | `true`, `false` (default) | Only changed files in the current pull request should be formatted.
 `fail-fast` | `true` (default), `false` | The job should fail if there's a formatting error. Only used with the `check` action.
 

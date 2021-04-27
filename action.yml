@@ -10,12 +10,18 @@ branding:
 
 inputs:
   repo-token:
-    description: "The GITHUB_TOKEN secret"
+    description: "GITHUB_TOKEN token or a repo scoped PAT"
     required: true
+    default: ${{ github.token }}
+
+  version:
+    description: "Version of dotnet-format to use"
+    required: true
+    default: "3"
 
   action:
-    description: "The primary action dotnet-format should perform (check for errors or apply fixes)"
-    required: false
+    description: "Primary action dotnet-format should perform (check for errors or apply fixes)"
+    required: true
     default: "check"
 
   only-changed-files:
