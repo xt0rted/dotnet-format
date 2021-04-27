@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added support for `dotnet-format` v4. To use this version set `version: 4`.
+
 ## Version 1.2.0
 
 - Bumped `@actions/core` from 1.2.6 to 1.2.7

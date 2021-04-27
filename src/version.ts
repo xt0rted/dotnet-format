@@ -1,9 +1,11 @@
 export type DotNetFormatVersion =
   | "3"
+  | "4"
 ;
 
 const supportedVersions: DotNetFormatVersion[] = [
   "3",
+  "4",
 ];
 
 export function checkVersion(version: string): DotNetFormatVersion {
