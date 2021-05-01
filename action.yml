@@ -19,6 +19,11 @@ inputs:
     required: true
     default: "3"
 
+  verbosity:
+    description: Set the logging level of dotnet-format
+    required: true
+    default: normal
+
   action:
     description: "Primary action dotnet-format should perform (check for errors or apply fixes)"
     required: true

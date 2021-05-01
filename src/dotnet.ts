@@ -25,6 +25,7 @@ export type FormatFunction = (options: FormatOptions) => Promise<boolean>;
 export interface FormatOptions {
   dryRun: boolean;
   onlyChangedFiles: boolean;
+  verbosity: string;
 }
 
 function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
@@ -64,7 +65,12 @@ async function formatVersion3(options: FormatOptions): Promise<boolean> {
     listeners: { debug },
   };
 
-  const dotnetFormatOptions = ["format", "--check"];
+  const dotnetFormatOptions = [
+    "format",
+    "--verbosity",
+    options.verbosity,
+    "--check",
+  ];
 
   if (options.dryRun) {
     dotnetFormatOptions.push("--dry-run");
@@ -97,7 +103,13 @@ async function formatVersion4(options: FormatOptions): Promise<boolean> {
   };
 
   const dotnetFormatReport = tempReportFile();
-  const dotnetFormatOptions = ["format", "--report", dotnetFormatReport];
+  const dotnetFormatOptions = [
+    "format",
+    "--verbosity",
+    options.verbosity,
+    "--report",
+    dotnetFormatReport,
+  ];
 
   if (options.dryRun) {
     dotnetFormatOptions.push("--check");

@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added support for `dotnet-format` v4. To use this version set `version: 4`.
+- Added a new `verbosity` input to set the logging level of `dotnet-format`. Allowed values are `quiet`, `minimal`, `normal` (default), `detailed`, and `diagnostic`.
 
 ## Version 1.2.0
 

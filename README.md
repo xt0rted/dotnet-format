@@ -161,6 +161,7 @@ Name | Allowed values | Description
 -- | -- | --
 `repo-token` | `GITHUB_TOKEN` (default) or PAT | `GITHUB_TOKEN` token or a repo scoped PAT.
 `version` | `3` (default), `4` | Version of `dotnet-format` to use.
+`verbosity` | `quiet`, `minimal`, `normal` (default), `detailed`, and `diagnostic` | Sets the logging level of `dotnet-format`.
 `action` | `check` (default), `fix` | Primary action `dotnet-format` should perform.
 
 ### Optional
