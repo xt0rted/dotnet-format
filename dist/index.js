@@ -7257,6 +7257,9 @@ async function formatVersion3(options) {
     if (options.dryRun) {
         dotnetFormatOptions.push("--dry-run");
     }
+    if (options.workspace) {
+        dotnetFormatOptions.push("--workspace", options.workspace);
+    }
     if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
         const filesToCheck = await getPullRequestFiles();
         (0,core.info)(`Checking ${filesToCheck.length} files`);
@@ -7278,6 +7281,7 @@ async function formatVersion4(options) {
     const dotnetFormatReport = tempReportFile();
     const dotnetFormatOptions = [
         "format",
+        options.workspace,
         "--verbosity",
         options.verbosity,
         "--report",
@@ -7341,11 +7345,13 @@ async function check() {
     const failFast = (0,core.getInput)("fail-fast") === "true";
     const version = (0,core.getInput)("version", { required: true });
     const verbosity = (0,core.getInput)("verbosity", { required: true });
+    const workspace = (0,core.getInput)("workspace");
     const dotnetFormatVersion = checkVersion(version);
     const result = await format(dotnetFormatVersion)({
         dryRun: true,
         onlyChangedFiles,
         verbosity,
+        workspace,
     });
     (0,core.setOutput)("has-changes", result.toString());
     // fail fast will cause the workflow to stop on this job
@@ -7357,11 +7363,13 @@ async function fix() {
     const onlyChangedFiles = (0,core.getInput)("only-changed-files") === "true";
     const version = (0,core.getInput)("version", { required: true });
     const verbosity = (0,core.getInput)("verbosity", { required: true });
+    const workspace = (0,core.getInput)("workspace");
     const dotnetFormatVersion = checkVersion(version);
     const result = await format(dotnetFormatVersion)({
         dryRun: false,
         onlyChangedFiles,
         verbosity,
+        workspace,
     });
     (0,core.setOutput)("has-changes", result.toString());
 }
