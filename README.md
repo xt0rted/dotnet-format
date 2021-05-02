@@ -163,6 +163,7 @@ Name | Allowed values | Description
 `version` | `3` (default), `4` | Version of `dotnet-format` to use.
 `verbosity` | `quiet`, `minimal`, `normal` (default), `detailed`, and `diagnostic` | Sets the logging level of `dotnet-format`.
 `action` | `check` (default), `fix` | Primary action `dotnet-format` should perform.
+`workspace` | `*` (defaults to `./`) | The workspace to run against which can be any `.sln`, `.csproj`, or `.vbproj` file, or a folder containing one of those files.
 
 ### Optional
 

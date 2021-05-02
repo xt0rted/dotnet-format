@@ -29,6 +29,11 @@ inputs:
     required: true
     default: "check"
 
+  workspace:
+    description: The workspace to run against which can be any .sln, .csproj, or .vbproj file, or a folder containing one of those files
+    required: true
+    default: "./"
+
   only-changed-files:
     description: "Only changed files in the current pull request should be formatted"
     required: false
