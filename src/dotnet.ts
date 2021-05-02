@@ -26,6 +26,7 @@ export interface FormatOptions {
   dryRun: boolean;
   onlyChangedFiles: boolean;
   verbosity: string;
+  workspace: string;
 }
 
 function formatOnlyChangedFiles(onlyChangedFiles: boolean): boolean {
@@ -76,6 +77,10 @@ async function formatVersion3(options: FormatOptions): Promise<boolean> {
     dotnetFormatOptions.push("--dry-run");
   }
 
+  if (options.workspace) {
+    dotnetFormatOptions.push("--workspace", options.workspace);
+  }
+
   if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
     const filesToCheck = await getPullRequestFiles();
 
@@ -105,6 +110,7 @@ async function formatVersion4(options: FormatOptions): Promise<boolean> {
   const dotnetFormatReport = tempReportFile();
   const dotnetFormatOptions = [
     "format",
+    options.workspace,
     "--verbosity",
     options.verbosity,
     "--report",

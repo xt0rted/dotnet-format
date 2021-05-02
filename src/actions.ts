@@ -11,6 +11,7 @@ export async function check(): Promise<void> {
   const failFast = getInput("fail-fast") === "true";
   const version = getInput("version", { required: true });
   const verbosity = getInput("verbosity", { required: true });
+  const workspace = getInput("workspace");
 
   const dotnetFormatVersion = checkVersion(version);
 
@@ -18,6 +19,7 @@ export async function check(): Promise<void> {
     dryRun: true,
     onlyChangedFiles,
     verbosity,
+    workspace,
   });
 
   setOutput("has-changes", result.toString());
@@ -32,6 +34,7 @@ export async function fix(): Promise<void> {
   const onlyChangedFiles = getInput("only-changed-files") === "true";
   const version = getInput("version", { required: true });
   const verbosity = getInput("verbosity", { required: true });
+  const workspace = getInput("workspace");
 
   const dotnetFormatVersion = checkVersion(version);
 
@@ -39,6 +42,7 @@ export async function fix(): Promise<void> {
     dryRun: false,
     onlyChangedFiles,
     verbosity,
+    workspace,
   });
 
   setOutput("has-changes", result.toString());
