@@ -7197,7 +7197,7 @@ const fileTypes = [
     ".cs",
     ".vb",
 ];
-async function getPullRequestFiles() {
+async function getPullRequestFiles(workspace) {
     const token = (0,core.getInput)("repo-token", { required: true });
     const githubClient = (0,github.getOctokit)(token);
     if (!github.context.issue.number) {
@@ -7207,10 +7207,13 @@ async function getPullRequestFiles() {
         ...github.context.repo,
         pull_number: github.context.issue.number,
     });
+    // strip any leading ./ since the api results don't start with slashes
+    workspace = workspace.replace(/^\.?\//g, "");
     return files
         .filter((file) => file.status !== "removed" /* Removed */)
         .filter((file) => fileTypes.includes((0,external_path_.extname)(file.filename)))
-        .map((file) => file.filename);
+        .filter((file) => file.filename.startsWith(workspace))
+        .map((file) => file.filename.slice(workspace.length + 1));
 }
 
 ;// CONCATENATED MODULE: ./src/dotnet.ts
@@ -7261,7 +7264,7 @@ async function formatVersion3(options) {
         dotnetFormatOptions.push("--workspace", options.workspace);
     }
     if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
-        const filesToCheck = await getPullRequestFiles();
+        const filesToCheck = await getPullRequestFiles(options.workspace);
         (0,core.info)(`Checking ${filesToCheck.length} files`);
         if (!filesToCheck.length) {
             (0,core.debug)("No files found to format");
@@ -7291,7 +7294,7 @@ async function formatVersion4(options) {
         dotnetFormatOptions.push("--check");
     }
     if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
-        const filesToCheck = await getPullRequestFiles();
+        const filesToCheck = await getPullRequestFiles(options.workspace);
         (0,core.info)(`Checking ${filesToCheck.length} files`);
         if (!filesToCheck.length) {
             (0,core.debug)("No files found to format");
