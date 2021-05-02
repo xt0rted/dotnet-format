@@ -82,7 +82,7 @@ async function formatVersion3(options: FormatOptions): Promise<boolean> {
   }
 
   if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
-    const filesToCheck = await getPullRequestFiles();
+    const filesToCheck = await getPullRequestFiles(options.workspace);
 
     info(`Checking ${filesToCheck.length} files`);
 
@@ -122,7 +122,7 @@ async function formatVersion4(options: FormatOptions): Promise<boolean> {
   }
 
   if (formatOnlyChangedFiles(options.onlyChangedFiles)) {
-    const filesToCheck = await getPullRequestFiles();
+    const filesToCheck = await getPullRequestFiles(options.workspace);
 
     info(`Checking ${filesToCheck.length} files`);
 
