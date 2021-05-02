@@ -38,7 +38,7 @@ const fileTypes = [
   ".vb",
 ];
 
-export async function getPullRequestFiles(): Promise<string[]> {
+export async function getPullRequestFiles(workspace: string): Promise<string[]> {
   const token = getInput("repo-token", { required: true });
   const githubClient = getOctokit(token);
 
@@ -51,8 +51,12 @@ export async function getPullRequestFiles(): Promise<string[]> {
     pull_number: context.issue.number,
   });
 
+  // strip any leading ./ since the api results don't start with slashes
+  workspace = workspace.replace(/^\.?\//g, "");
+
   return files
     .filter((file) => file.status !== FileStatus.Removed)
     .filter((file) => fileTypes.includes(extname(file.filename)))
-    .map((file) => file.filename);
+    .filter((file) => file.filename.startsWith(workspace))
+    .map((file) => file.filename.slice(workspace.length + 1));
 }
