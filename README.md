@@ -117,9 +117,9 @@ jobs:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 ```
 
-## Control Permissions
+## Token Permissions
 
-If your repository is using [control permissions](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions), and you want to check only changed files, you'll need to set `pull-request: read` on either the workflow or the job.
+If your repository is using [token permissions](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions), and you want to check only changed files, you'll need to set `pull-request: read` on either the workflow or the job.
 
 ### Workflow Config
 
