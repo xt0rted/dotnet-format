@@ -119,7 +119,7 @@ jobs:
 
 ## Control Permissions
 
-If your repository is using [control permissions](https://github.blog/changelog/2021-04-20-github-actions-control-permissions-for-github_token/), and you want to check only changed files, you'll need to set `pull-request: read` on either the workflow or the job.
+If your repository is using [control permissions](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions), and you want to check only changed files, you'll need to set `pull-request: read` on either the workflow or the job.
 
 ### Workflow Config
 
