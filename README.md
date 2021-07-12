@@ -2,7 +2,7 @@
 
 [![CI Workflow Status](https://github.com/xt0rted/dotnet-format/workflows/CI/badge.svg)](https://github.com/xt0rted/dotnet-format/actions?query=workflow%3ACI)
 
-Run [dotnet-format](https://github.com/dotnet/format) v3 as part of your workflow to report formatting errors or auto fix violations as part of your pull request workflow.
+Run [dotnet-format](https://github.com/dotnet/format) as part of your workflow to report formatting errors or auto fix violations as part of your pull request workflow.
 
 ## Usage
 
@@ -160,7 +160,7 @@ jobs:
 Name | Allowed values | Description
 -- | -- | --
 `repo-token` | `GITHUB_TOKEN` (default) or PAT | `GITHUB_TOKEN` token or a repo scoped PAT.
-`version` | `3` (default) | Version of `dotnet-format` to use.
+`version` | `3` (default), `4` | Version of `dotnet-format` to use.
 `action` | `check` (default), `fix` | Primary action `dotnet-format` should perform.
 
 ### Optional
