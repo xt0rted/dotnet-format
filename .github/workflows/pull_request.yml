@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: xt0rted/block-autosquash-commits-action@v2.1.0
+      - uses: xt0rted/block-autosquash-commits-action@v2.2.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
