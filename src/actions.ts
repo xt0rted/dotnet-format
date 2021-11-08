@@ -1,4 +1,5 @@
 import {
+  getBooleanInput,
   getInput,
   setOutput,
 } from "@actions/core";
@@ -7,8 +8,8 @@ import { format } from "./dotnet";
 import { checkVersion } from "./version";
 
 export async function check(): Promise<void> {
-  const onlyChangedFiles = getInput("only-changed-files") === "true";
-  const failFast = getInput("fail-fast") === "true";
+  const onlyChangedFiles = getBooleanInput("only-changed-files");
+  const failFast = getBooleanInput("fail-fast");
   const version = getInput("version", { required: true });
 
   const dotnetFormatVersion = checkVersion(version);
@@ -27,7 +28,7 @@ export async function check(): Promise<void> {
 }
 
 export async function fix(): Promise<void> {
-  const onlyChangedFiles = getInput("only-changed-files") === "true";
+  const onlyChangedFiles = getBooleanInput("only-changed-files");
   const version = getInput("version", { required: true });
 
   const dotnetFormatVersion = checkVersion(version);
