@@ -46,7 +46,7 @@ export async function getPullRequestFiles(): Promise<string[]> {
     throw Error("Unable to get pull request number from action event");
   }
 
-  const files = await githubClient.paginate(githubClient.pulls.listFiles, {
+  const files = await githubClient.paginate(githubClient.rest.pulls.listFiles, {
     ...context.repo,
     pull_number: context.issue.number,
   });
