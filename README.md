@@ -1,6 +1,7 @@
 # GitHub Action for dotnet-format
 
-[![CI Workflow Status](https://github.com/xt0rted/dotnet-format/workflows/CI/badge.svg)](https://github.com/xt0rted/dotnet-format/actions?query=workflow%3ACI)
+[![CI](https://github.com/xt0rted/dotnet-format/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/xt0rted/dotnet-format/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/xt0rted/dotnet-formatc/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/xt0rted/dotnet-format/actions/workflows/codeql-analysis.yml)
 
 Run [dotnet-format](https://github.com/dotnet/format) v3 as part of your workflow to report formatting errors or auto fix violations as part of your pull request workflow.
 
