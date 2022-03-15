@@ -19,8 +19,8 @@ jobs:
         node: [12, 14, 16]
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Check out repo
+        uses: actions/checkout@v3.0.0
 
       - name: Install node
         uses: actions/setup-node@v3.0.0
