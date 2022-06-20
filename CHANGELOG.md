@@ -5,7 +5,7 @@
 - Bumped `@actions/core` from 1.2.7 to 1.8.2
 - Bumped `@actions/exec` from 1.0.4 to 1.1.0
 - Bumped `@actions/github` from 4.0.0 to 5.0.3
-- Bumped `@actions/io` from 1.1.0 to 1.1.1
+- Bumped `@actions/io` from 1.1.0 to 1.1.2
 - Bumped `node-fetch` from 2.6.1 to 2.6.7
 
 ## Version 1.2.0
