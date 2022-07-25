@@ -235,10 +235,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
   integrity sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
 
-"@types/node@^18.0.6":
-  version "18.0.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.6.tgz#0ba49ac517ad69abe7a1508bc9b3a5483df9d5d7"
-  integrity sha512-/xUq6H2aQm261exT6iZTMifUySEt4GR5KX8eYyY+C4MSNPqSh9oNIP7tz2GLKTlFaiBbgZNxffoR3CVRG+cljw==
+"@types/node@^18.6.0":
+  version "18.6.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.0.tgz#3ad8c5a4e8e11abc51a11894355f2ba58de9f1a1"
+  integrity sha512-WZ/6I1GL0DNAo4bb01lGGKTHH8BHJyECepf11kWONg3OJoHq2WYOm16Es1V54Er7NTUXsbDCpKRKdmBc4X2xhA==
 
 "@typescript-eslint/eslint-plugin@^4.33.0":
   version "4.33.0"
