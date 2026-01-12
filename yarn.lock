@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@actions/core@^1.10.1":
-  version "1.10.1"
-  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.10.1.tgz#61108e7ac40acae95ee36da074fa5850ca4ced8a"
-  integrity sha512-3lBR9EDAY+iYIpTnTIXmWcNbX3T2kCkAEQGIQx4NVQ0575nk2k3GRZDTPQG+vVtS2izSLmINlxXf0uLtnrTP+g==
+"@actions/core@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@actions/core/-/core-2.0.2.tgz#81c59e1f3437660d2148a064c1ba8e99931f2cf7"
+  integrity sha512-Ast1V7yHbGAhplAsuVlnb/5J8Mtr/Zl6byPPL+Qjq3lmfIgWF1ak1iYfF/079cRERiuTALTXkSuEUdZeDCfGtA==
   dependencies:
-    "@actions/http-client" "^2.0.1"
-    uuid "^8.3.2"
+    "@actions/exec" "^2.0.0"
+    "@actions/http-client" "^3.0.1"
 
 "@actions/exec@^1.1.1":
   version "1.1.1"
@@ -16,6 +16,13 @@
   integrity sha512-+sCcHHbVdk93a0XT19ECtO/gIXoxvdsgQLzb2fE2/5sIZmWQuluYyjPQtrtTHdU1YzTZ7bAPN4sITq2xi1679w==
   dependencies:
     "@actions/io" "^1.0.1"
+
+"@actions/exec@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@actions/exec/-/exec-2.0.0.tgz#35e829723389f80e362ec2cc415697ec74362ad8"
+  integrity sha512-k8ngrX2voJ/RIN6r9xB82NVqKpnMRtxDoiO+g3olkIUpQNqjArXrCQceduQZCQj3P3xm32pChRLqRrtXTlqhIw==
+  dependencies:
+    "@actions/io" "^2.0.0"
 
 "@actions/github@^5.1.1":
   version "5.1.1"
@@ -34,10 +41,23 @@
   dependencies:
     tunnel "^0.0.6"
 
+"@actions/http-client@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@actions/http-client/-/http-client-3.0.1.tgz#0ac91c3abf179a401e23d40abf0d7caa92324268"
+  integrity sha512-SbGS8c/vySbNO3kjFgSW77n83C4MQx/Yoe+b1hAdpuvfHxnkHzDq2pWljUpAA56Si1Gae/7zjeZsV0CYjmLo/w==
+  dependencies:
+    tunnel "^0.0.6"
+    undici "^5.28.5"
+
 "@actions/io@^1.0.1", "@actions/io@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@actions/io/-/io-1.1.2.tgz#766ac09674a289ce0f1550ffe0a6eac9261a8ea9"
   integrity sha512-d+RwPlMp+2qmBfeLYPLXuSRykDIFEwdTA0MMxzS9kh4kvP1ftrc/9fzy6pX6qAjthdXruHQ6/6kjT/DNo5ALuw==
+
+"@actions/io@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@actions/io/-/io-2.0.0.tgz#3ad1271ba3cd515324f2215e8d4c1c0c3864d65b"
+  integrity sha512-Jv33IN09XLO+0HS79aaODsvIRyduiF7NY/F6LYeK5oeUmrsz7aFdRphQjFoESF4jS7lMauDOttKALcpapVDIAg==
 
 "@babel/code-frame@7.12.11":
   version "7.12.11"
@@ -74,6 +94,11 @@
     js-yaml "^3.13.1"
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
+
+"@fastify/busboy@^2.0.0":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-2.1.1.tgz#b9da6a878a371829a0502c9b6c1c143ef6663f4d"
+  integrity sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==
 
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
@@ -1171,6 +1196,13 @@ undici-types@~5.26.4:
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-5.26.5.tgz#bcd539893d00b56e964fd2657a4866b221a65617"
   integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
 
+undici@^5.28.5:
+  version "5.29.0"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-5.29.0.tgz#419595449ae3f2cdcba3580a2e8903399bd1f5a3"
+  integrity sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==
+  dependencies:
+    "@fastify/busboy" "^2.0.0"
+
 universal-user-agent@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/universal-user-agent/-/universal-user-agent-6.0.0.tgz#3381f8503b251c0d9cd21bc1de939ec9df5480ee"
@@ -1182,11 +1214,6 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
-
-uuid@^8.3.2:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
-  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-compile-cache@^2.0.3:
   version "2.2.0"
